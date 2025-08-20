@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "MVC Tutorial";
+}
+
+
+
+<div class="tutorial-container">
+    <h2>ASP.NET MVC Pattern: Step-by-Step Tutorial</h2>
+
+    <ol id="steps">
+        <li style="--i:1">
+            <strong>Model:</strong> Represents your data and business logic.<br />
+            <code>Models/SampleModel.cs</code>
+        </li>
+        <li style="--i:2">
+            <strong>View:</strong> Displays the UI. This page is a View!<br />
+            <code>Views/Home/Index.cshtml</code>
+        </li>
+        <li style="--i:3">
+            <strong>Controller:</strong> Handles user input and updates Model/View.<br />
+            <code>Controllers/HomeController.cs</code>
+        </li>
+    </ol>
+
+    <button class="step-btn" onclick="highlightNextStep()">Show Next Step</button>
+
+    <hr />
+
+    <h3>How It Works</h3>
+    <ul>
+        <li>User requests a URL (e.g., <code>/Home/Index</code>).</li>
+        <li><strong>Controller</strong> receives the request and prepares data (from <strong>Model</strong>).</li>
+        <li><strong>Controller</strong> passes data to the <strong>View</strong>.</li>
+        <li><strong>View</strong> renders HTML for the browser.</li>
+    </ul>
+
+    <hr />
+
+    <h3>Try It Yourself!</h3>
+    <p>
+        <strong>Step 1:</strong> Edit <code>Models/SampleModel.cs</code> to define some data.<br />
+        <strong>Step 2:</strong> Update <code>Controllers/HomeController.cs</code> to send data to this view.<br />
+        <strong>Step 3:</strong> Display the data here in <code>Index.cshtml</code>.<br />
+    </p>
+
+    <p>
+        <em>Check your code files and see how MVC connects everything!</em>
+    </p>
+</div>
+
+<script>
+    let currentStep = 0;
+    function highlightNextStep() {
+        const steps = document.querySelectorAll('#steps li');
+        if (currentStep < steps.length) {
+            steps[currentStep].classList.add('highlight');
+            if (currentStep > 0) {
+                steps[currentStep - 1].classList.remove('highlight');
+            }
+            currentStep++;
+        } else {
+            steps.forEach(step => step.classList.remove('highlight'));
+            currentStep = 0;
+        }
+    }
+</script>

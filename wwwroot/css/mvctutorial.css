@@ -1,0 +1,112 @@
+body {
+    background: #f8fafc;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.tutorial-container {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 32px;
+    margin: 40px auto;
+    max-width: 700px;
+    animation: fadeIn 1s;
+}
+h2 {
+    text-align: center;
+    color: #2d6cdf;
+    margin-bottom: 24px;
+    animation: slideDown 1s;
+}
+ol {
+    counter-reset: step;
+    padding-left: 0;
+}
+ol li {
+    list-style: none;
+    margin: 24px 0;
+    padding: 16px 24px;
+    background: #eaf1fb;
+    border-radius: 8px;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-40px);
+    animation: fadeInStep 0.7s forwards;
+    animation-delay: calc(0.3s * var(--i));
+}
+ol li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: -32px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2d6cdf;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 2px 8px rgba(45,108,223,0.15);
+}
+hr {
+    margin: 32px 0;
+    border: none;
+    border-top: 2px solid #eaf1fb;
+}
+ul {
+    margin-bottom: 24px;
+}
+ul li {
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInList 0.7s forwards;
+}
+ul li:nth-child(1) { animation-delay: 1.2s; }
+ul li:nth-child(2) { animation-delay: 1.4s; }
+ul li:nth-child(3) { animation-delay: 1.6s; }
+ul li:nth-child(4) { animation-delay: 1.8s; }
+.step-btn {
+    display: inline-block;
+    margin: 16px 0;
+    padding: 10px 24px;
+    background: #2d6cdf;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.step-btn:hover {
+    background: #1b417a;
+}
+.highlight {
+    background: #fffbe6;
+    border-left: 4px solid #ffd700;
+    padding-left: 20px;
+    animation: highlight 1s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeInStep {
+    to { opacity: 1; transform: translateX(0);}
+}
+@keyframes fadeInList {
+    to { opacity: 1; transform: translateY(0);}
+}
+@keyframes highlight {
+    from { background: #fffbe6; }
+    to { background: #fff; }
+}
