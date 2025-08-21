@@ -3,29 +3,27 @@ using Microsoft.AspNetCore.Mvc;
 using MyMvcProject.Models;
 
 namespace MyMvcProject.Controllers;
-
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
-    public IActionResult Index()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+    public IActionResult Index() => View();
+}
+public class TutorialsController : Controller
+{
+    public IActionResult Index() => View();
+}
+public class ExamplesController : Controller
+{
+    public IActionResult Index() => View();
+}
+public class QuizzesController : Controller
+{
+    public IActionResult Index() => View();
+}
+public class ResourcesController : Controller
+{
+    public IActionResult Index() => View();
+}
+public class ContactController : Controller
+{
+    public IActionResult Index() => View();
 }

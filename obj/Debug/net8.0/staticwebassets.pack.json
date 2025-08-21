@@ -9,16 +9,16 @@
       "PackagePath": "staticwebassets\\css\\mvctutorial.css"
     },
     {
-      "Id": "C:\\Users\\arpit\\DotNetMVCDemo\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
-    },
-    {
       "Id": "C:\\Users\\arpit\\DotNetMVCDemo\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\arpit\\DotNetMVCDemo\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
+      "Id": "C:\\Users\\arpit\\DotNetMVCDemo\\wwwroot\\js\\quiz.js",
+      "PackagePath": "staticwebassets\\js\\quiz.js"
+    },
+    {
+      "Id": "C:\\Users\\arpit\\DotNetMVCDemo\\wwwroot\\js\\slideshow.js",
+      "PackagePath": "staticwebassets\\js\\slideshow.js"
     },
     {
       "Id": "C:\\Users\\arpit\\DotNetMVCDemo\\wwwroot\\lib\\bootstrap\\LICENSE",

@@ -1,105 +1,31 @@
 ﻿@{
-    ViewData["Title"] = "MVC Model Basics - .NET Framework";
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="slideshow-container">
-    <div class="slides" style="position:relative; height:340px;">
+<section id="home">
+    <div class="slideshow-container">
         <div class="slide active">
-            <h1>🌌 MVC Model in .NET Framework</h1>
-            <p class="subtitle">A quick cosmic journey through Model-View-Controller</p>
+            <h2>Welcome to .NET & MVC</h2>
+            <p>Learn how to build powerful web apps with <code>ASP.NET MVC</code>.</p>
         </div>
         <div class="slide">
-            <h2>👨‍💻 What is MVC?</h2>
-            <p>
-                <strong>MVC</strong> stands for <b>Model-View-Controller</b>.<br>
-                It’s a design pattern that separates your application into three main components.
-            </p>
+            <h2>Why MVC?</h2>
+            <p>Organize code into <code>Model</code>, <code>View</code>, and <code>Controller</code>.</p>
         </div>
         <div class="slide">
-            <h2>🧩 Model</h2>
-            <p>
-                The <b>Model</b> represents your application’s data and business logic.<br>
-                <code>public class Product { public int Id; public string Name; }</code>
-            </p>
-        </div>
-        <div class="slide">
-            <h2>🖼️ View</h2>
-            <p>
-                The <b>View</b> is responsible for displaying the data (the UI).<br>
-                <code>&lt;h1&gt;@@Model.Name&lt;/h1&gt;</code>
-            </p>
-        </div>
-        <div class="slide">
-            <h2>🕹️ Controller</h2>
-            <p>
-                The <b>Controller</b> handles user input, updates the Model, and selects the View.<br>
-                <code>public ActionResult Index() { return View(product); }</code>
-            </p>
-        </div>
-        <div class="slide">
-            <h2>🚀 How it works</h2>
-            <ol>
-                <li>User requests a page (URL).</li>
-                <li>Controller receives the request.</li>
-                <li>Controller gets data from Model.</li>
-                <li>Controller passes data to View.</li>
-                <li>View renders HTML for the user.</li>
-            </ol>
-        </div>
-        <div class="slide">
-            <h2>✨ Why use MVC?</h2>
-            <ul>
-                <li>Separation of concerns</li>
-                <li>Easy to test and maintain</li>
-                <li>Scalable for large applications</li>
-            </ul>
-        </div>
-        <div class="slide">
-            <h2>🌠 You’re ready for launch!</h2>
-            <p>
-                Explore your project’s <b>Controllers</b>, <b>Models</b>, and <b>Views</b> folders.<br>
-                Happy coding in the .NET universe!
-            </p>
+            <h2>Start Your Journey 🚀</h2>
+            <p>Follow tutorials, try examples, and test yourself with quizzes.</p>
         </div>
     </div>
     <div class="slideshow-controls">
-        <button onclick="prevSlide()" aria-label="Previous Slide">⏮️</button>
-        <span id="slide-indicator"></span>
-        <button onclick="nextSlide()" aria-label="Next Slide">⏭️</button>
+        <button id="prev" aria-label="Previous Slide">⟨</button>
+        <div id="slide-indicator">1 / 3</div>
+        <button id="next" aria-label="Next Slide">⟩</button>
     </div>
-</div>
-
-<script>
-    const slides = document.querySelectorAll('.slide');
-    let current = 0;
-    function showSlide(idx) {
-        slides.forEach((s, i) => {
-            s.classList.toggle('active', i === idx);
-            s.style.opacity = i === idx ? '1' : '0';
-            s.style.pointerEvents = i === idx ? 'auto' : 'none';
-            s.style.position = i === idx ? 'relative' : 'absolute';
-            s.style.top = '0';
-            s.style.left = '0';
-            s.style.width = '100%';
-            s.style.height = '100%';
-            s.style.transition = 'opacity 0.5s';
-            s.style.display = 'flex';
-            s.style.alignItems = 'center';
-            s.style.justifyContent = 'center';
-        });
-        document.getElementById('slide-indicator').textContent = `${idx + 1} / ${slides.length}`;
-    }
-    function nextSlide() {
-        current = (current + 1) % slides.length;
-        showSlide(current);
-    }
-    function prevSlide() {
-        current = (current - 1 + slides.length) % slides.length;
-        showSlide(current);
-    }
-    document.addEventListener('keydown', e => {
-        if (e.key === 'ArrowRight') nextSlide();
-        if (e.key === 'ArrowLeft') prevSlide();
-    });
-    showSlide(current);
-</script>
+    <div class="progress-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</section>
