@@ -1,112 +1,145 @@
+/* Dark Space Theme for Slideshow */
 body {
-    background: #f8fafc;
+    background: radial-gradient(ellipse at top left, #232946 60%, #121629 100%);
+    color: #eaeaea;
     font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
-.tutorial-container {
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-    padding: 32px;
-    margin: 40px auto;
-    max-width: 700px;
-    animation: fadeIn 1s;
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: url('https://svgshare.com/i/12dE.svg') repeat;
+    opacity: 0.12;
 }
-h2 {
-    text-align: center;
-    color: #2d6cdf;
-    margin-bottom: 24px;
-    animation: slideDown 1s;
-}
-ol {
-    counter-reset: step;
-    padding-left: 0;
-}
-ol li {
-    list-style: none;
-    margin: 24px 0;
-    padding: 16px 24px;
-    background: #eaf1fb;
-    border-radius: 8px;
+/* ...existing code... */
+.slideshow-container {
+    max-width: 480px;
+    min-height: 340px;
+    margin: 48px auto 0 auto;
+    background: rgba(30, 34, 54, 0.97);
+    border-radius: 18px;
+    box-shadow: 0 4px 32px 0 rgba(0,0,0,0.45), 0 0 0 2px #393e6e;
+    padding: 32px 18px 24px 18px;
     position: relative;
-    opacity: 0;
-    transform: translateX(-40px);
-    animation: fadeInStep 0.7s forwards;
-    animation-delay: calc(0.3s * var(--i));
+    z-index: 1;
+    overflow: hidden;
+    /* Add a transition for smooth height change if needed */
+    transition: min-height 0.3s;
 }
-ol li::before {
-    counter-increment: step;
-    content: counter(step);
-    position: absolute;
-    left: -32px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #2d6cdf;
-    color: #fff;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
+.slideshow-container .slide {
+    position: absolute !important;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex !important;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: 1.1em;
-    box-shadow: 0 2px 8px rgba(45,108,223,0.15);
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.5s;
+    padding: 0 8px;
+    animation: none;
 }
-hr {
-    margin: 32px 0;
-    border: none;
-    border-top: 2px solid #eaf1fb;
+.slideshow-container .slide.active {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    animation: fadeIn 0.7s;
 }
-ul {
-    margin-bottom: 24px;
+@media (max-width: 600px) {
+    .slideshow-container {
+        max-width: 98vw;
+        min-height: 200px;
+        padding: 12px 2vw 18px 2vw;
+    }
+    .slideshow-container .slide {
+        min-height: 180px;
+        padding: 0 2vw;
+    }
+    h1, h2 {
+        font-size: 1.2em;
+    }
 }
-ul li {
-    margin-bottom: 10px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInList 0.7s forwards;
+h1, h2 {
+    color: #a3bffa;
+    text-align: center;
+    margin-bottom: 18px;
+    text-shadow: 0 2px 8px #232946;
 }
-ul li:nth-child(1) { animation-delay: 1.2s; }
-ul li:nth-child(2) { animation-delay: 1.4s; }
-ul li:nth-child(3) { animation-delay: 1.6s; }
-ul li:nth-child(4) { animation-delay: 1.8s; }
-.step-btn {
+.subtitle {
+    color: #ffd700;
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+}
+code {
+    background: #232946;
+    color: #ffd700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.98em;
+    font-family: 'Fira Mono', 'Consolas', monospace;
+    box-shadow: 0 1px 4px #232946;
+    margin-top: 8px;
     display: inline-block;
-    margin: 16px 0;
-    padding: 10px 24px;
-    background: #2d6cdf;
-    color: #fff;
+}
+ol, ul {
+    margin: 0 0 0 18px;
+    padding: 0;
+}
+li {
+    margin-bottom: 8px;
+    font-size: 1.05em;
+}
+.slideshow-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 18px;
+    gap: 18px;
+}
+.slideshow-controls button {
+    background: linear-gradient(90deg, #a3bffa 60%, #ffd700 100%);
+    color: #232946;
     border: none;
-    border-radius: 6px;
-    font-size: 1em;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5em;
     cursor: pointer;
-    transition: background 0.2s;
+    box-shadow: 0 2px 8px #232946;
+    transition: background 0.2s, color 0.2s, transform 0.1s;
 }
-.step-btn:hover {
-    background: #1b417a;
+.slideshow-controls button:hover {
+    background: linear-gradient(90deg, #ffd700 60%, #a3bffa 100%);
+    color: #232946;
+    transform: scale(1.08);
 }
-.highlight {
-    background: #fffbe6;
-    border-left: 4px solid #ffd700;
-    padding-left: 20px;
-    animation: highlight 1s;
+#slide-indicator {
+    color: #a3bffa;
+    font-size: 1.1em;
+    min-width: 60px;
+    text-align: center;
+    letter-spacing: 1px;
 }
-
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-40px);}
+    from { opacity: 0; transform: translateY(30px);}
     to { opacity: 1; transform: translateY(0);}
 }
-@keyframes fadeInStep {
-    to { opacity: 1; transform: translateX(0);}
-}
-@keyframes fadeInList {
-    to { opacity: 1; transform: translateY(0);}
-}
-@keyframes highlight {
-    from { background: #fffbe6; }
-    to { background: #fff; }
+@media (max-width: 600px) {
+    .slideshow-container {
+        max-width: 98vw;
+        padding: 12px 2vw 18px 2vw;
+    }
+    .slideshow-container .slide {
+        min-height: 180px;
+    }
+    h1, h2 {
+        font-size: 1.2em;
+    }
 }

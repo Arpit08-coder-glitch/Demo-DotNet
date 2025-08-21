@@ -1,66 +1,105 @@
 ﻿@{
-    ViewData["Title"] = "MVC Tutorial";
+    ViewData["Title"] = "MVC Model Basics - .NET Framework";
 }
 
-
-
-<div class="tutorial-container">
-    <h2>ASP.NET MVC Pattern: Step-by-Step Tutorial</h2>
-
-    <ol id="steps">
-        <li style="--i:1">
-            <strong>Model:</strong> Represents your data and business logic.<br />
-            <code>Models/SampleModel.cs</code>
-        </li>
-        <li style="--i:2">
-            <strong>View:</strong> Displays the UI. This page is a View!<br />
-            <code>Views/Home/Index.cshtml</code>
-        </li>
-        <li style="--i:3">
-            <strong>Controller:</strong> Handles user input and updates Model/View.<br />
-            <code>Controllers/HomeController.cs</code>
-        </li>
-    </ol>
-
-    <button class="step-btn" onclick="highlightNextStep()">Show Next Step</button>
-
-    <hr />
-
-    <h3>How It Works</h3>
-    <ul>
-        <li>User requests a URL (e.g., <code>/Home/Index</code>).</li>
-        <li><strong>Controller</strong> receives the request and prepares data (from <strong>Model</strong>).</li>
-        <li><strong>Controller</strong> passes data to the <strong>View</strong>.</li>
-        <li><strong>View</strong> renders HTML for the browser.</li>
-    </ul>
-
-    <hr />
-
-    <h3>Try It Yourself!</h3>
-    <p>
-        <strong>Step 1:</strong> Edit <code>Models/SampleModel.cs</code> to define some data.<br />
-        <strong>Step 2:</strong> Update <code>Controllers/HomeController.cs</code> to send data to this view.<br />
-        <strong>Step 3:</strong> Display the data here in <code>Index.cshtml</code>.<br />
-    </p>
-
-    <p>
-        <em>Check your code files and see how MVC connects everything!</em>
-    </p>
+<div class="slideshow-container">
+    <div class="slides" style="position:relative; height:340px;">
+        <div class="slide active">
+            <h1>🌌 MVC Model in .NET Framework</h1>
+            <p class="subtitle">A quick cosmic journey through Model-View-Controller</p>
+        </div>
+        <div class="slide">
+            <h2>👨‍💻 What is MVC?</h2>
+            <p>
+                <strong>MVC</strong> stands for <b>Model-View-Controller</b>.<br>
+                It’s a design pattern that separates your application into three main components.
+            </p>
+        </div>
+        <div class="slide">
+            <h2>🧩 Model</h2>
+            <p>
+                The <b>Model</b> represents your application’s data and business logic.<br>
+                <code>public class Product { public int Id; public string Name; }</code>
+            </p>
+        </div>
+        <div class="slide">
+            <h2>🖼️ View</h2>
+            <p>
+                The <b>View</b> is responsible for displaying the data (the UI).<br>
+                <code>&lt;h1&gt;@@Model.Name&lt;/h1&gt;</code>
+            </p>
+        </div>
+        <div class="slide">
+            <h2>🕹️ Controller</h2>
+            <p>
+                The <b>Controller</b> handles user input, updates the Model, and selects the View.<br>
+                <code>public ActionResult Index() { return View(product); }</code>
+            </p>
+        </div>
+        <div class="slide">
+            <h2>🚀 How it works</h2>
+            <ol>
+                <li>User requests a page (URL).</li>
+                <li>Controller receives the request.</li>
+                <li>Controller gets data from Model.</li>
+                <li>Controller passes data to View.</li>
+                <li>View renders HTML for the user.</li>
+            </ol>
+        </div>
+        <div class="slide">
+            <h2>✨ Why use MVC?</h2>
+            <ul>
+                <li>Separation of concerns</li>
+                <li>Easy to test and maintain</li>
+                <li>Scalable for large applications</li>
+            </ul>
+        </div>
+        <div class="slide">
+            <h2>🌠 You’re ready for launch!</h2>
+            <p>
+                Explore your project’s <b>Controllers</b>, <b>Models</b>, and <b>Views</b> folders.<br>
+                Happy coding in the .NET universe!
+            </p>
+        </div>
+    </div>
+    <div class="slideshow-controls">
+        <button onclick="prevSlide()" aria-label="Previous Slide">⏮️</button>
+        <span id="slide-indicator"></span>
+        <button onclick="nextSlide()" aria-label="Next Slide">⏭️</button>
+    </div>
 </div>
 
 <script>
-    let currentStep = 0;
-    function highlightNextStep() {
-        const steps = document.querySelectorAll('#steps li');
-        if (currentStep < steps.length) {
-            steps[currentStep].classList.add('highlight');
-            if (currentStep > 0) {
-                steps[currentStep - 1].classList.remove('highlight');
-            }
-            currentStep++;
-        } else {
-            steps.forEach(step => step.classList.remove('highlight'));
-            currentStep = 0;
-        }
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+    function showSlide(idx) {
+        slides.forEach((s, i) => {
+            s.classList.toggle('active', i === idx);
+            s.style.opacity = i === idx ? '1' : '0';
+            s.style.pointerEvents = i === idx ? 'auto' : 'none';
+            s.style.position = i === idx ? 'relative' : 'absolute';
+            s.style.top = '0';
+            s.style.left = '0';
+            s.style.width = '100%';
+            s.style.height = '100%';
+            s.style.transition = 'opacity 0.5s';
+            s.style.display = 'flex';
+            s.style.alignItems = 'center';
+            s.style.justifyContent = 'center';
+        });
+        document.getElementById('slide-indicator').textContent = `${idx + 1} / ${slides.length}`;
     }
+    function nextSlide() {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+    }
+    function prevSlide() {
+        current = (current - 1 + slides.length) % slides.length;
+        showSlide(current);
+    }
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+    });
+    showSlide(current);
 </script>
